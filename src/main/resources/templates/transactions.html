@@ -19,7 +19,7 @@
 			     it dynamically list ALL 100 transactions from the Repo -->
 			<div th:each="storedTransaction : ${transactions}">
 				<tr>
-					<td><a href="/transactions/50">[[${storedTransaction.id}]]</a></td>
+					<td><a th:href="@{/transactions/{transactionId}(transactionId=${storedTransaction.id})}">[[${storedTransaction.id}]]</a></td>
 					<td>[[${storedTransaction.date}]]</td>
 					<td>[[${storedTransaction.retailer}]]</td>
 					<td><span th:if="${storedTransaction.type == 'C'}">[[${storedTransaction.amount}]]</span></td>
