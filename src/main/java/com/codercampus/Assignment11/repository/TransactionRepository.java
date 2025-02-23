@@ -48,4 +48,11 @@ public class TransactionRepository {
 		} 
 		
 	}
+
+	public Transaction findById(Integer transactionId) {
+		return transactions.stream()
+				.filter(t -> t.getId().equals(Long.valueOf(transactionId)))
+				.findFirst()
+				.orElse(null);
+	}
 }

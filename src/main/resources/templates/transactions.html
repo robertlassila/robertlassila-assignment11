@@ -17,7 +17,17 @@
 			<!-- These 4 rows below are for demonstration purposes only
 			     You will need to edit the code below in order to make
 			     it dynamically list ALL 100 transactions from the Repo -->
-			<tr>
+			<div th:each="storedTransaction : ${transactions}">
+				<tr>
+					<td><a href="/transactions/50">[[${storedTransaction.id}]]</a></td>
+					<td>[[${storedTransaction.date}]]</td>
+					<td>[[${storedTransaction.retailer}]]</td>
+					<td><span th:if="${storedTransaction.type == 'C'}">[[${storedTransaction.amount}]]</span></td>
+					<td><span th:if="${storedTransaction.type == 'D'}">[[${storedTransaction.amount}]]</span></td>
+				</tr>
+			</div>
+
+			<!-- <tr>
 				<td><a href="/transactions/50">50</a></td>
 				<td>2020-01-01T19:04:48</td>
 				<td>H-E-B Grocery</td>
@@ -45,7 +55,7 @@
 				<td>38.50</td>
 				<td></td>
 			</tr>
-			
+			-->
 		</table>
 	</body>
 </html>
