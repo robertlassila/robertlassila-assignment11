@@ -18,12 +18,19 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+    @GetMapping("/")
+    public String redirectToTransactions () {
+        return "redirect:/transactions";
+    }
+
+    @GetMapping("/error")
+    public String error (ModelMap model) {
+        return "error";
+    }
+
     @GetMapping ("/transactions")
     public String transactions(ModelMap model) {
         List<Transaction> transactions = transactionService.findAll();
-        Transaction transaction = new Transaction();
-
-        model.put("transaction", transaction);
         model.put("transactions", transactions);
 
         return "transactions";
@@ -33,6 +40,6 @@ public class TransactionController {
     public String getTransaction (@PathVariable Integer transactionId, ModelMap model) {
         Transaction transaction = transactionService.findById(transactionId);
         model.put("transaction", transaction);
-        return "singletransaction";
+        return "transaction";
     }
 }
